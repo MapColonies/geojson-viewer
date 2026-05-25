@@ -169,7 +169,12 @@ function App({ config }: AppProps) {
 	const mapRef = useRef<HTMLDivElement | null>(null);
 	const vectorSource = useMemo(() => new VectorSource({ wrapX: false }), []);
 	const [drawType, setDrawType] = useState<DrawMode>('None');
-	const [isTileDebugEnabled, setIsTileDebugEnabled] = useState(false);
+	const [isTileDebugEnabled, setIsTileDebugEnabled] = useState(
+		() => localStorage.getItem('tileDebug') === 'true',
+	);
+	useEffect(() => {
+		localStorage.setItem('tileDebug', String(isTileDebugEnabled));
+	}, [isTileDebugEnabled]);
 	const [hoveredFeatureKey, setHoveredFeatureKey] = useState<string | null>(
 		null,
 	);
