@@ -93,7 +93,7 @@ export function useWmtsLayer({
 				existingLayer.setSource(wmtsSource);
 				return;
 			}
-			const layer = new TileLayer({ source: wmtsSource });
+			const layer = new TileLayer({ source: wmtsSource, minZoom: 0 });
 			layerMapRef.current.set(layerId, layer);
 		});
 
