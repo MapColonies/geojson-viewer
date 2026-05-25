@@ -35,6 +35,7 @@ export function useMapInstance({
 				zoom: 2,
 				minZoom: 0,
 				maxZoom,
+				constrainResolution: false,
 			}),
 			controls: [],
 		});
