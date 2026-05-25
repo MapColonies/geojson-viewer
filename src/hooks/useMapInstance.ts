@@ -35,7 +35,7 @@ export function useMapInstance({
 				projection,
 				center: [0, 0],
 				zoom: 2,
-				minZoom: 0,
+				minZoom: -2,
 				maxZoom,
 				constrainResolution: false,
 				constrainOnlyCenter: false,
