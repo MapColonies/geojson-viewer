@@ -3,6 +3,7 @@ import Map from 'ol/Map';
 import View from 'ol/View';
 import VectorLayer from 'ol/layer/Vector';
 import Modify from 'ol/interaction/Modify';
+import { get as getProjection } from 'ol/proj';
 import type VectorSource from 'ol/source/Vector';
 
 type UseMapInstanceParams = {
@@ -26,6 +27,7 @@ export function useMapInstance({
 		const vectorLayer = new VectorLayer({
 			source: vectorSource,
 		});
+		const projExtent = getProjection(projection)?.getExtent();
 		const map = new Map({
 			target: mapRef.current,
 			layers: [vectorLayer],
@@ -33,8 +35,11 @@ export function useMapInstance({
 				projection,
 				center: [0, 0],
 				zoom: 2,
-				minZoom: 0,
+				minZoom: -2,
 				maxZoom,
+				constrainResolution: false,
+				constrainOnlyCenter: false,
+				extent: projExtent ?? undefined,
 			}),
 			controls: [],
 		});

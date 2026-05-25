@@ -175,7 +175,7 @@ export function useWmtsLayerFromCsw({
 							existingLayer.setSource(wmtsSource);
 							return;
 						}
-						const layer = new TileLayer({ source: wmtsSource });
+						const layer = new TileLayer({ source: wmtsSource, minZoom: -2 });
 						layerMapRef.current.set(layerId, layer);
 					} catch (error) {
 						const cacheKey = `${wmtsMetadata.capabilitiesUrl}::${apiKey ?? ''}`;
